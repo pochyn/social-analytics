@@ -34,8 +34,15 @@ resource "aws_ecs_service" "ecs_service" {
   launch_type = "FARGATE"
 
   network_configuration {
-	subnets = data.aws_subnet_ids.private.ids
-	assign_public_ip = false
+	subnets = data.aws_subnet_ids.public.ids
+	assign_public_ip = true
 	security_groups = [aws_security_group.ecs_tasks.id]
   }
+
+  load_balancer {
+    target_group_arn = aws_alb_target_group.target_group.arn
+    container_name   = var.service_name
+    container_port   = 3000
+  }
+
 }

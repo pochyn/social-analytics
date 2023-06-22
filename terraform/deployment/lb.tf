@@ -19,7 +19,7 @@ resource "aws_alb_listener" "http" {
 
 resource "aws_alb_target_group" "target_group" {
   name = "${var.service_name}-tg"
-  port = 80
+  port = 3000
   protocol = "HTTP"
   vpc_id = data.aws_vpc.main.id
   target_type = "ip"

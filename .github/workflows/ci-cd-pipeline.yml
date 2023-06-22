@@ -65,3 +65,33 @@ jobs:
           docker build --platform linux/amd64 -t ${REPOSITORY_NAME}:${IMAGE_TAG} .
           docker tag ${REPOSITORY_NAME}:${IMAGE_TAG} ${REPOSITORY_URL}:${IMAGE_TAG}
           docker push ${REPOSITORY_URL}:${IMAGE_TAG}
+
+  deploy-app:
+    runs-on: ubuntu-20.04
+    needs: [docker-build]
+    env:
+      REPOSITORY_NAME: ${{ needs.registry.outputs.repository-name }}
+      ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Deploy
+        id: terraform-deploy
+        run: |
+          cd terraform/deployment/
+          
+          terraform init \
+          -no-color \
+          -backend-config=config/backend-config.tf \
+          -reconfigure \
+          -input=false
+          
+          terraform apply \
+          -var-file=vars.tfvars \
+          -input=false \
+          -auto-approve

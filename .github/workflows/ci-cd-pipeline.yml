@@ -83,6 +83,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Deploy
         id: terraform-deploy
+        env:
+          IMAGE_TAG: ${{ needs.docker-build.outputs.image-tag }}
         run: |
           cd terraform/deployment/
 
@@ -95,7 +97,7 @@ jobs:
           -input=false
           
           terraform apply \
-          -var="image_tag=$IMAGE_TAG" \
+          -var="image_tag=${IMAGE_TAG}" \
           -var-file=vars.tfvars \
           -input=false \
           -auto-approve

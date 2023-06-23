@@ -57,6 +57,7 @@ jobs:
         id: docker-build
         run: |
           export IMAGE_TAG=$(git rev-parse --short HEAD)
+          echo "::set-output name=image-tag::$IMAGE_TAG"
 
           export ACCOUNT_ID=$(aws sts get-caller-identity | jq -r .Account)
           aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
@@ -94,7 +95,7 @@ jobs:
           -input=false
           
           terraform apply \
-          -var-file=vars.tfvars \
           -var="image_tag=$IMAGE_TAG" \
+          -var-file=vars.tfvars \
           -input=false \
           -auto-approve

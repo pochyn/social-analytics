@@ -41,14 +41,18 @@ jobs:
           
   docker-build:
     runs-on: ubuntu-20.04
+    outputs:
+      image_tag: ${{ steps.docker-build.outputs.image_tag }}
     needs: [registry]
     env:
       REPOSITORY_NAME: ${{ needs.registry.outputs.repository-name }}
       ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
     steps:
       - name: Check Out
+        id: check_out
         uses: actions/checkout@v2
       - name: Configure AWS Credentials
+        id: configure
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
@@ -57,7 +61,7 @@ jobs:
         id: docker-build
         run: |
           export IMAGE_TAG=$(git rev-parse --short HEAD)
-          echo "::set-output name=image-tag::$IMAGE_TAG"
+          echo "image_tag=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
           export ACCOUNT_ID=$(aws sts get-caller-identity | jq -r .Account)
           aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
@@ -83,12 +87,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Deploy
         id: terraform-deploy
-        env:
-          IMAGE_TAG: ${{ needs.docker-build.outputs.image-tag }}
         run: |
           cd terraform/deployment/
-
-          IMAGE_TAG=${{ needs.docker-build.outputs.image-tag }}
           
           terraform init \
           -no-color \
@@ -97,7 +97,7 @@ jobs:
           -input=false
           
           terraform apply \
-          -var="image_tag=${IMAGE_TAG}" \
+          -var="image_tag=${{needs.docker-build.outputs.image_tag}}" \
           -var-file=vars.tfvars \
           -input=false \
           -auto-approve

@@ -84,6 +84,8 @@ jobs:
         id: terraform-deploy
         run: |
           cd terraform/deployment/
+
+          IMAGE_TAG=${{ needs.docker-build.outputs.image-tag }}
           
           terraform init \
           -no-color \
@@ -93,5 +95,6 @@ jobs:
           
           terraform apply \
           -var-file=vars.tfvars \
+          -var="image_tag=$IMAGE_TAG" \
           -input=false \
           -auto-approve

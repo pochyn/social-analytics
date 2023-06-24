@@ -1,4 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+const path = require("path");
+const withLess = require("next-with-less");
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+module.exports = withLess({
+  // reactStrictMode: true,
+  // lessLoaderOptions: {},
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+  },
+});

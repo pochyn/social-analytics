@@ -1,7 +1,16 @@
-export default function Home() {
+import Grid from "@/components/Grid";
+import WidgetsList from "@/components/WidgetsList";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
+import "../styles/style.scss";
+
+function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      hi
-    </main>
-  )
+    <div>
+      <WidgetsList />
+      <Grid />
+    </div>
+  );
 }
+
+export default Home;

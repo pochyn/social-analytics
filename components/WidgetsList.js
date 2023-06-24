@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import widgets from "@/components/widgets";
-import Title from "@/components/atoms/Title";
 import { Typography } from "antd";
 
 const { Text } = Typography;
@@ -51,7 +50,7 @@ const WidgetsList = ({ children }) => {
           const currentFolder = widgets[folder];
           return (
             <>
-              <span class="bg-grey3 text-gray-800 text-xs mr-2 px-2.5 py-0.5 rounded dark:bg-gray1 dark:text-gray3">
+              <span class="bg-grey3 text-gray-800 text-xs mr-2 px-2.5 py-0.5 rounded dark:bg-gray1 dark:text-gray3 border border-grey2">
                 <Text>{currentFolder.label}</Text>
               </span>
 

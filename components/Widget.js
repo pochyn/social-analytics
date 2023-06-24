@@ -20,21 +20,9 @@ const WidgetWrapper = ({
   }, [isRerendered]);
 
   return (
-    <Card
-      ref={elementRef}
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div
-        style={{
-          flexGrow: 1,
-        }}
-      />
-      <span style={{ float: "right" }} onClick={() => onRemoveItem(id)}>
+    <Card ref={elementRef} className="h-full w-full flex-1 flex-col">
+      <div className="grow" />
+      <span className="float-right" onClick={() => onRemoveItem(id)}>
         <CloseOutlined />
       </span>
       <div

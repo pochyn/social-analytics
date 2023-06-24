@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import widgets from "@/components/widgets";
-import { Card } from "antd";
 import Title from "@/components/atoms/Title";
 import { Typography } from "antd";
 
@@ -47,46 +46,46 @@ const WidgetsList = ({ children }) => {
 
   return (
     <>
-      {/* <Card>{items[0].children[0].label}</Card> */}
-      <div class="mt-20 w-Full p-2 pt-4">
+      <div className="mt-20 w-Full p-2 pt-4">
         {Object.keys(widgets).map((folder) => {
           const currentFolder = widgets[folder];
           return (
             <>
-              <div key={currentFolder.label} class="flex justify-between pb-4">
-                <Title type="title-description" text={currentFolder.label} />
-              </div>
+              <span class="bg-grey3 text-gray-800 text-xs mr-2 px-2.5 py-0.5 rounded dark:bg-gray1 dark:text-gray3">
+                <Text>{currentFolder.label}</Text>
+              </span>
+
               <div
-                class="grid gap-3  grid-cols-1 md:grid-cols-3 lg:grid-cols-6"
+                class="mt-1 mb-2 grid gap-3  grid-cols-1 md:grid-cols-3 lg:grid-cols-6"
                 id="accordion-collapse-body-1"
               >
                 {currentFolder.items.map((item) => {
                   console.log(item);
                   return (
-                    <span
-                      class="p-4 mb-3 flex justify-start items-center bg-white shadow rounded-lg cursor-pointer"
-                      key={item.key}
-                      draggable={true}
-                      unselectable="on"
-                      onDragStart={(e) =>
-                        e.dataTransfer.setData("widgetId", item.key)
-                      }
-                    >
-                      <img
-                        src="https://www.svgrepo.com/show/502433/tool.svg"
-                        alt=""
-                        class="h-8 w-8"
-                      ></img>
-                      <div class="p-2">
-                        <div class="font-semibold">
-                          <Text>{item.label}</Text>
-                        </div>
+                    <>
+                      <span
+                        className="p-1 mb-3 max-w-sm flex justify-start items-center bg-white shadow rounded-md cursor-pointer"
+                        key={item.key}
+                        draggable={true}
+                        unselectable="on"
+                        onDragStart={(e) =>
+                          e.dataTransfer.setData("widgetId", item.key)
+                        }
+                      >
+                        <div class="p-2 w-4/5">
+                          <div className="font-semibold">
+                            <div className="flex justify-start">
+                              <span className="text-m">{item.icon}</span>
+                              <Text className="ml-2">{item.label}</Text>
+                            </div>
+                          </div>
 
-                        <span class="text-gray-600">
-                          <Text>{item.label}</Text>
-                        </span>
-                      </div>
-                    </span>
+                          <div class="text-gray-600 truncate ml-6">
+                            <Text>{item.description}</Text>
+                          </div>
+                        </div>
+                      </span>
+                    </>
                   );
                 })}
               </div>

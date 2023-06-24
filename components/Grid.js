@@ -66,7 +66,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
     <div>
       <ResponsiveGridLayout
         draggableHandle=".drag-handle"
-        className="mb-3 shadow border rounded-lg cursor-pointer"
+        className="mb-3 shadow border-gray-200 rounded-lg cursor-pointer bg-grey"
         layouts={layouts}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 50, md: 35, sm: 20, xs: 10, xxs: 5 }}

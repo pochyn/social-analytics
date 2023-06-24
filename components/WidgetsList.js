@@ -57,10 +57,11 @@ const WidgetsList = ({ children }) => {
                 <Title type="title-description" text={currentFolder.label} />
               </div>
               <div
-                class="grid gap-3  grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                class="grid gap-3  grid-cols-1 md:grid-cols-3 lg:grid-cols-6"
                 id="accordion-collapse-body-1"
               >
                 {currentFolder.items.map((item) => {
+                  console.log(item);
                   return (
                     <span
                       class="p-4 mb-3 flex justify-start items-center bg-white shadow rounded-lg cursor-pointer"

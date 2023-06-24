@@ -42,8 +42,6 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
   const layouts = getFromLS("layouts") || { lg: [] };
   const [rerender, setRerender] = useState(false);
 
-  console.log("*** ", layouts);
-
   const onLayoutChange = (_, allLayouts) => {
     saveToLS("layouts", allLayouts);
     setRerender(!rerender);

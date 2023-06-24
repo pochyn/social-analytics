@@ -7,6 +7,7 @@ const Title = ({ type, text }) => {
     if (type === "title-content") return 1;
     if (type === "title-section") return 2;
     if (type === "title-subsection") return 3;
+    if (type === "title-description") return 4;
     return 1;
   };
 

@@ -1,5 +1,5 @@
 const DemoChart = () => {
-  return <div>Demo Chart</div>;
+  return <div>Demo Chart 1</div>;
 };
 
 const demoChart1 = {

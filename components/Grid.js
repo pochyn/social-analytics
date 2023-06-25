@@ -35,7 +35,7 @@ const widgets = Object.keys(allWidgets).flatMap(
 const currentWidgets = widgets.reduce(
   (object, item) => ({
     ...object,
-    [item.key]: { component: item.component, label: item.label },
+    [item.key]: { ...item },
   }),
   {}
 );
@@ -100,6 +100,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
               onRemoveItem={onRemoveItem}
               component={currentWidgets[key.split("-")[0]].component}
               label={currentWidgets[key.split("-")[0]].label}
+              icon={currentWidgets[key.split("-")[0]].icon}
               localSymbol={key.split("-")[1]}
               itemsLayout={items}
             />

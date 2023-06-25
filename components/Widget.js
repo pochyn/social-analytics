@@ -1,12 +1,14 @@
-import { CloseOutlined } from "@ant-design/icons";
-import { Card } from "antd";
 import { useEffect, useRef, useState } from "react";
+import { Typography } from "antd";
+
+const { Text } = Typography;
 
 const WidgetWrapper = ({
   id,
   onRemoveItem,
   component,
   label,
+  icon,
   isRerendered,
   itemsLayout,
 }) => {
@@ -29,8 +31,12 @@ const WidgetWrapper = ({
     >
       <div class="relative h-full w-full">
         <div class="relative bg-white rounded-md shadow dark:bg-gray3 h-full w-full">
-          <div class="flex items-start justify-between pt-2 pl-2 pr-2 border-b rounded-t border-grey3 dark:border-grey3">
-            <h3 class="text-sm font-semibold">{label}</h3>
+          <div class="flex items-start justify-between pt-2 pl-2 pr-2 pb-1 border-b rounded-t border-grey3 dark:border-grey3">
+            {/* <h3 class="text-sm font-semibold">{label}</h3> */}
+            <div className="flex justify-start text-sm font-semibold">
+              <span className="text- items-center">{icon}</span>
+              <h3 class="text-sm font-semibold ml-2 mt-1">{label}</h3>
+            </div>
             <button
               onClick={() => onRemoveItem(id)}
               type="button"

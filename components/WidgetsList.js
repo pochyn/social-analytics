@@ -22,27 +22,6 @@ const WidgetsList = ({ children }) => {
     setCollapsed(!collapsed);
   };
 
-  const items = Object.keys(widgets).map((folder) => {
-    const currentFolder = widgets[folder];
-    return getItem(
-      currentFolder.label,
-      currentFolder.key,
-      currentFolder.icon,
-      currentFolder.items.map((item) =>
-        getItem(
-          <div
-            draggable={true}
-            unselectable="on"
-            onDragStart={(e) => e.dataTransfer.setData("widgetId", item.key)}
-          >
-            {item.label}
-          </div>,
-          item.key
-        )
-      )
-    );
-  });
-
   return (
     <>
       <div className="mt-20 w-Full p-2 pt-4">
@@ -75,7 +54,9 @@ const WidgetsList = ({ children }) => {
                           <div className="font-semibold">
                             <div className="flex justify-start">
                               <span className="text-m">{item.icon}</span>
-                              <Text className="ml-2">{item.label}</Text>
+                              <h3 class="text-sm font-semibold ml-2 mt-1">
+                                {item.label}
+                              </h3>
                             </div>
                           </div>
 

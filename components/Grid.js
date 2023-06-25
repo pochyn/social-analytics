@@ -66,13 +66,15 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
   };
 
   return (
-    <div className="mb-3 ml-10 mr-10 border-grey2 shadow rounded-sm">
+    <div className="mb-3 ml-10 mr-10 border-2 border-black shadow rounded-lg">
       <ResponsiveGridLayout
         draggableHandle=".drag-handle"
-        className="shadow rounded-sm cursor-pointer"
+        className="shadow rounded-lg cursor-pointer"
         style={{
-          backgroundColor: "#FAF9F6",
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%235a585d' fill-opacity='0.05'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          // backgroundColor: "#FAF9F6",
+          // backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%235a585d' fill-opacity='0.05'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundColor: "#f9fcff",
+          backgroundImage: "linear-gradient(147deg, #f9fcff 0%, #eaedf0 74%)",
           minHeight: "80vh",
         }}
         layouts={layouts}

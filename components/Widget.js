@@ -28,7 +28,7 @@ const WidgetWrapper = ({
       className="fixed top-0 left-0 right-0 overflow-x-hidden overflow-y-auto md:inset-0 h-full w-full drag-handle"
     >
       <div class="relative h-full w-full">
-        <div class="relative bg-white rounded-sm shadow dark:bg-gray3 h-full w-full">
+        <div class="relative bg-white rounded-md shadow dark:bg-gray3 h-full w-full">
           <div class="flex items-start justify-between pt-2 pl-2 pr-2 border-b rounded-t border-grey3 dark:border-grey3">
             <h3 class="text-sm font-semibold">{label}</h3>
             <button

@@ -43,3 +43,12 @@ a {
   box-sizing: border-box;
   @apply font-montserrat;
 } */
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top;
+}
+.react-grid-item.react-grid-placeholder {
+  background-color: transparent !important;
+}
+

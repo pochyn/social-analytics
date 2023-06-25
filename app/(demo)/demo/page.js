@@ -6,8 +6,7 @@ import "react-resizable/css/styles.css";
 
 function Home() {
   return (
-    <div>
-      <WidgetsList />
+    <div className="mt-10">
       <Grid />
     </div>
   );

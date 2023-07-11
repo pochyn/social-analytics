@@ -32,26 +32,26 @@ const WidgetsList = ({ children }) => {
     <>
       <div
         id="features"
-        class="flex flex-row mt-10 ml-[8%] mr-[8%] w-Full pt-4 flex-row"
+        className="grid grid-cols-1 sm:grid-cols-3 gap-12 mt-4 sm:mt-10 px-4 sm:px-[8%] mx-auto w-full pt-4"
       >
-        <div className="w-1/3 ">
+        <div className="mb-4 sm:mb-0">
           <span className="text-secondary font-bold text-2xl">01</span>
-          <div className="mb-2 text-md font-semibold text-primary">
+          <div className="mb-2 text-sm sm:text-md font-semibold text-primary">
             Enter Tik-Tok @username you want to analyze.
           </div>
           <div>
-            <div className=" w-[80%] flex flex-col sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+            <div className="flex flex-col items-center justify-start space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4">
               <input
                 type="text"
                 id="hs-leading-icon"
                 name="hs-leading-icon"
-                class="pl-2 pt-2 pb-2 block w-full border shadow-sm text-sm focus:z-10 focus:border-secondary focus:ring-secondary dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                className="pl-2 pt-2 pb-2 block border shadow-sm text-sm focus:z-10 focus:border-secondary focus:ring-secondary dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                 placeholder="@username"
               ></input>
               <button
                 rel="noopener noreferrer"
                 href="#demo"
-                className="px-8 py-2 text-md text-white  font-semibold bg-secondary border dark:border-gray-100"
+                className="px-6 sm:px-8 py-2 text-sm sm:text-md text-white font-semibold bg-secondary border dark:border-gray-100"
               >
                 Search
               </button>
@@ -59,31 +59,30 @@ const WidgetsList = ({ children }) => {
           </div>
         </div>
 
-        <div className="w-1/3 pr-4">
+        <div className="hidden sm:block">
           <span className="text-secondary font-bold text-2xl">02</span>
-          <div className="mb-1 text-md font-semibold text-primary">
+          <div className="mb-1 text-sm sm:text-md font-semibold text-primary">
             Choose from a wide variety of widgets!
           </div>
 
-          <div className="mb-1 text-md text-primary">
-            <span className="italic">TrendMe Hub</span> offers a diverse
-            selection of customizable widgets for a comprehensive analysis.
-            Customize and explore based on your unique needs.
+          <div className="mb-1 text-sm sm:text-md text-primary">
+            <span className="italic">Viral Hub</span> offers a diverse selection
+            of customizable widgets for a comprehensive analysis. Customize and
+            explore based on your unique needs.
           </div>
         </div>
 
-        <div className="w-1/3 pl-4">
+        <div className="hidden sm:block">
           <span className="text-secondary font-bold text-2xl">03</span>
-          <div className="mb-1 text-md font-semibold text-primary">
+          <div className="mb-1 text-sm sm:text-md font-semibold text-primary">
             Personalize Your Dashboard for In-depth Analysis!
           </div>
-          <div className="mb-1 text-md text-primary">
-            With <span className="italic">TrendMe Hub</span>, you have the
-            freedom to design a personalized dashboard that reflects your
-            priorities. Effortlessly{" "}
-            <span className="italic">Drag and Drop</span> widgets to arrange
-            your dashboard and gain valuable insights to drive informed
-            strategies.
+          <div className="mb-1 text-sm sm:text-md text-primary">
+            With <span className="italic">Viral Hub</span>, you have the freedom
+            to design a personalized dashboard that reflects your priorities.
+            Effortlessly <span className="italic">Drag and Drop</span> widgets
+            to arrange your dashboard and gain valuable insights to drive
+            informed strategies.
           </div>
         </div>
       </div>

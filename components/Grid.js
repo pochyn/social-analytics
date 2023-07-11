@@ -41,8 +41,71 @@ const currentWidgets = widgets.reduce(
 );
 
 const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
-  const [items, setItems] = useState(getFromLS("items") || []);
-  const layouts = getFromLS("layouts") || { lg: [] };
+  const [items, setItems] = useState(
+    getFromLS("items") || ["profileInfo", "premiumChart1", "premiumChart2"]
+  );
+  const layouts = getFromLS("layouts") || {
+    lg: [
+      {
+        w: 14,
+        h: 7,
+        x: 0,
+        y: 0,
+        i: "profileInfo",
+        moved: false,
+        static: false,
+      },
+      {
+        w: 14,
+        h: 7,
+        x: 0,
+        y: 7,
+        i: "premiumChart1",
+        moved: false,
+        static: false,
+      },
+      {
+        w: 14,
+        h: 7,
+        x: 0,
+        y: 14,
+        i: "premiumChart2",
+        moved: false,
+        static: false,
+      },
+    ],
+    md: [
+      {
+        w: 14,
+        h: 7,
+        x: 0,
+        y: 0,
+        i: "profileInfo",
+        moved: false,
+        static: false,
+      },
+      {
+        w: 16,
+        h: 9,
+        x: 14,
+        y: 0,
+        i: "premiumChart1",
+        moved: false,
+        static: false,
+      },
+      {
+        w: 14,
+        h: 7,
+        x: 0,
+        y: 7,
+        i: "premiumChart2",
+        moved: false,
+        static: false,
+      },
+    ],
+    xxs: [],
+    xs: [],
+  };
   const [rerender, setRerender] = useState(false);
 
   const onLayoutChange = (_, allLayouts) => {

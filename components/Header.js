@@ -63,17 +63,13 @@ const Header = () => {
   return (
     <header className="bg-white">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="sm:ml-[8%] mr-2 xs:mr-4 xs:ml-4 sm:mr-[8%] flex max-w-7xl items-center justify-between pt-6 pb-6 "
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Social Analytics</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+          <a href="#" className="">
+            <span className="sr-only">Viral Hub</span>
+            <img className="h-8 w-auto" src="./VH-1.png" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">

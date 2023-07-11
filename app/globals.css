@@ -3,20 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'MyFont';
-  font-style: normal;
-  font-weight: 400;
-  src: local(''), url('/fonts/AvenirNextLTPro-Regular.otf') format('otf');
-}
-
-@font-face {
-  font-family: 'MyFont';
-  font-style: bold;
-  font-weight: 600;
-  src: local(''), url('/fonts/AvenirNextLTPro-Bold.otf') format('otf');
-}
-
 .arrow {
   position: fixed;
   bottom: 0;
@@ -95,4 +81,5 @@ a {
 .react-grid-item.react-grid-placeholder {
   background-color: transparent !important;
 }
+
 

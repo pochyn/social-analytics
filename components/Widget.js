@@ -30,7 +30,7 @@ const WidgetWrapper = ({
       className="fixed top-0 left-0 right-0 overflow-x-hidden overflow-y-auto md:inset-0 h-full w-full drag-handle"
     >
       <div className="relative h-full w-full">
-        <div className="relative bg-white rounded-md shadow dark:bg-gray3 h-full w-full">
+        <div className="relative bg-white border shadow dark:bg-gray3 h-full w-full">
           <div className="flex items-start justify-between pt-2 pl-2 pr-2 pb-1 border-b rounded-t border-grey3 dark:border-grey3">
             {/* <h3 className="text-sm font-semibold">{label}</h3> */}
             <div className="flex justify-start text-sm font-semibold">
@@ -59,7 +59,7 @@ const WidgetWrapper = ({
             </button>
           </div>
           <div className="p-2 space-y-6">
-            {component(height, width, itemsLayout)}
+            {/* {component(height, width, itemsLayout)} */}
           </div>
         </div>
       </div>

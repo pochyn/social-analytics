@@ -80,9 +80,12 @@ const WidgetsList = ({ children }) => {
           <div className="mb-1 text-sm sm:text-md text-primary">
             With <span className="italic">Viral Hub</span>, you have the freedom
             to design a personalized dashboard that reflects your priorities.
-            Effortlessly <span className="italic">Drag and Drop</span> widgets
-            to arrange your dashboard and gain valuable insights to drive
-            informed strategies.
+            Effortlessly{" "}
+            <span className=" underline decoration-secondary decoration-2">
+              Drag and Drop
+            </span>{" "}
+            widgets to arrange your dashboard and gain valuable insights to
+            drive informed strategies.
           </div>
         </div>
       </div>
@@ -96,12 +99,10 @@ const WidgetsList = ({ children }) => {
             <FiChevronRight />
           </button>
         </div>
-        {/* <div class="arrow">
-          <div class="arrow__body"></div>
-        </div> */}
+
         <div
           id="content"
-          className=" carousel flex items-center justify-start overflow-x-auto scroll-smooth  scrollbar-hide"
+          className="carousel flex items-center justify-start overflow-x-auto scroll-smooth  scrollbar-hide"
         >
           {Object.keys(widgets).map((folder) => {
             const currentFolder = widgets[folder];

@@ -12,6 +12,7 @@ function Home() {
       <Hero />
       <WidgetsList />
       <Grid />
+
       <Pricing />
     </div>
   );

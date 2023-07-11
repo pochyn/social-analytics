@@ -14,7 +14,8 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"],
+        myfont: ["MyFont"],
+        sans: ["MyFont", "sans-serif"],
       },
     },
     colors: {
@@ -35,5 +36,14 @@ module.exports = {
       white: "#FFF",
     },
   },
+  variants: {
+    extend: {
+      fontFamily: ["hover", "focus"],
+    },
+  },
+
   plugins: [],
+  corePlugins: {
+    fontFamily: true,
+  },
 };

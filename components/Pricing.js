@@ -3,7 +3,7 @@
 const Pricing = () => {
   return (
     <>
-      <section className="py-6 dark:bg-gray-800 dark:text-gray-50">
+      <section id="pricing" className="py-6 dark:bg-gray-800 dark:text-gray-50">
         <div className="container mx-auto p-4 sm:p-10">
           <div className="mb-16 space-y-4 text-center">
             <h1 className="text-4xl font-semibold leadi">Pricing</h1>

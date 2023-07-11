@@ -1,18 +1,18 @@
-import { LineChartOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 
-const DemoChart = () => {
+const ProfileInfo = () => {
   return <div>Demo Chart 1</div>;
 };
 
-const demoChart1 = {
+const profileInfo = {
   component: () => {
-    return <DemoChart />;
+    return <ProfileInfo />;
   },
-  key: "demoChart1",
-  label: "Demo Chart",
+  key: "profile-info",
+  label: "Profile Info",
   description:
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
-  icon: <LineChartOutlined />,
+  icon: <UserOutlined />,
 };
 
-export default demoChart1;
+export default profileInfo;

@@ -90,7 +90,7 @@ const WidgetsList = ({ children }) => {
         </div>
       </div>
 
-      <div className="relative  ml-[8%] mr-[8%] mb-4 mt-2 w-Full">
+      <div className="relative  ml-[8%] mr-[8%] mb-4 mt-4 w-Full">
         <div className="">
           <button onClick={scrollLeft} className="rounded-full bg-white">
             <FiChevronLeft />

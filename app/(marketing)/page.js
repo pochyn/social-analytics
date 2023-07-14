@@ -2,7 +2,6 @@ import Grid from "@/components/Grid";
 import WidgetsList from "@/components/WidgetsList";
 import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
-import Head from "next/head";
 
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";

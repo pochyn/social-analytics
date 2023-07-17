@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { CognitoIdentityServiceProvider } from "aws-sdk";
 import crypto from "crypto";
+require("dotenv").config();
 
 function calculateSecretHash(clientId, secret, username) {
   const message = `${username}${clientId}`;

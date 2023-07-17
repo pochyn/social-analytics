@@ -1,7 +1,7 @@
 name: CI/CD Pipeline
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 permissions:
   id-token: write
   contents: read
@@ -15,7 +15,7 @@ jobs:
       repository-name: ${{ steps.create-registry.outputs.repository-name }}
     steps:
       - name: Check Out
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -30,15 +30,15 @@ jobs:
           -backend-config=config/backend-config.tf \
           -reconfigure \
           -input=false
-        
+
           terraform apply \
           -var-file=vars.tfvars \
           -input=false \
           -auto-approve 
-        
+
           export REPOSITORY_NAME=$(terraform output --raw repository_name)
           echo "::set-output name=repository-name::$REPOSITORY_NAME"
-          
+
   docker-build:
     runs-on: ubuntu-20.04
     outputs:
@@ -50,13 +50,16 @@ jobs:
     steps:
       - name: Check Out
         id: check_out
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Configure AWS Credentials
         id: configure
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
+      - name: Create .env file from GitHub secret
+        run: |
+          echo "${{ secrets.PROD_DASHBOARD_ENV_FILE }}" > .env
       - name: Image build and push
         id: docker-build
         run: |
@@ -66,7 +69,7 @@ jobs:
           export ACCOUNT_ID=$(aws sts get-caller-identity | jq -r .Account)
           aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
           export REPOSITORY_URL=${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${REPOSITORY_NAME}
-          
+
           docker build --platform linux/amd64 -t ${REPOSITORY_NAME}:${IMAGE_TAG} .
           docker tag ${REPOSITORY_NAME}:${IMAGE_TAG} ${REPOSITORY_URL}:${IMAGE_TAG}
           docker push ${REPOSITORY_URL}:${IMAGE_TAG}
@@ -89,13 +92,13 @@ jobs:
         id: terraform-deploy
         run: |
           cd terraform/deployment/
-          
+
           terraform init \
           -no-color \
           -backend-config=config/backend-config.tf \
           -reconfigure \
           -input=false
-          
+
           terraform apply \
           -var="image_tag=${{needs.docker-build.outputs.image_tag}}" \
           -var-file=vars.tfvars \

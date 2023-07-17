@@ -1,13 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { CognitoIdentityServiceProvider } from "aws-sdk";
-import crypto from "crypto";
+import calculateSecretHash from "@/utils/calculateHash";
 require("dotenv").config();
-
-function calculateSecretHash(clientId, secret, username) {
-  const message = `${username}${clientId}`;
-  return crypto.createHmac("sha256", secret).update(message).digest("base64");
-}
 
 export const authOptions = {
   providers: [
@@ -72,7 +67,7 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: "/signin",
+    // signIn: "/sign-in",
     signOut: "/auth/signout",
     error: "/auth/error",
     verifyRequest: "/auth/verify-request",

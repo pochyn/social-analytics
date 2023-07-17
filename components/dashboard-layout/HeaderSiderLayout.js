@@ -70,7 +70,7 @@ const HeaderLayout = ({ children }) => {
         <Menu mode="inline" defaultSelectedKeys={["1"]} items={items} />
       </Sider>
       <Layout>
-        <Header triggerCollapsed={triggerCollapsed} collapsed={collapsed} />
+        {/* <Header triggerCollapsed={triggerCollapsed} collapsed={collapsed} /> */}
         <Content
           style={{
             minHeight: "80vh",

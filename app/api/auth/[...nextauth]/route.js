@@ -50,7 +50,7 @@ export const authOptions = {
               const email = userDetails.UserAttributes.find(
                 (attribute) => attribute.Name === "email"
               );
-              const customAttr = userDetails.UserAttributes.find(
+              const account_type = userDetails.UserAttributes.find(
                 (attribute) => attribute.Name === "custom:account_type"
               );
 
@@ -58,13 +58,15 @@ export const authOptions = {
                 id: userDetails.Username,
                 name: userDetails.Username,
                 email: email ? email.Value : null,
-                customAttr: customAttr ? customAttr.Value : null,
+                account_type: account_type ? account_type.Value : null,
               };
             }
           } else {
             return null;
           }
         } catch (error) {
+          console.log("**** error", error);
+          console.log("**** error", process.env.COGNITO_CLIENT_ID);
           throw new Error("Authentication failed");
         }
       },
@@ -83,7 +85,7 @@ export const authOptions = {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
-        token.customAttr = user.customAttr;
+        token.account_type = user.account_type;
       }
       return token;
     },

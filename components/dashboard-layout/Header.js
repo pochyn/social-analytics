@@ -5,11 +5,11 @@ import { Layout, Menu } from "antd";
 import Link from "next/link";
 
 const headerItems = [
-  { key: 1, page: "/", title: "Dashboard" },
-  { key: 2, page: "/algorithms", title: "Algorithms" },
-  { key: 3, page: "/gateway", title: "Gateway" },
-  { key: 4, page: "/logs", title: "Logs" },
-  { key: 5, page: "/settings", title: "Settings" },
+  // { key: 1, page: "/", title: "Dashboard" },
+  // { key: 2, page: "/algorithms", title: "Algorithms" },
+  // { key: 3, page: "/gateway", title: "Gateway" },
+  // { key: 4, page: "/logs", title: "Logs" },
+  // { key: 5, page: "/settings", title: "Settings" },
 ];
 
 const Header = ({ triggerCollapsed, collapsed }) => {

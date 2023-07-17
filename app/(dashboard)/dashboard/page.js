@@ -17,7 +17,7 @@ function Home() {
   });
 
   return (
-    <div className="mt-10">
+    <div className="">
       <Grid />
     </div>
   );

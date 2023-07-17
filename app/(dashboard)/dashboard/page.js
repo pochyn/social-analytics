@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 function Home() {
-  const { data: session } = useSession({
+  const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
       // redirect("/signin?callbackUrl=/protected/client");
@@ -18,7 +18,8 @@ function Home() {
 
   return (
     <div className="">
-      <Grid />
+      {status === "authenticated" && <Grid />}
+      {status === "loading" && <span>loading</span>}
     </div>
   );
 }

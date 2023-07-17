@@ -65,8 +65,6 @@ export const authOptions = {
             return null;
           }
         } catch (error) {
-          console.log("**** error", error);
-          console.log("**** error", process.env.COGNITO_CLIENT_ID);
           throw new Error("Authentication failed");
         }
       },

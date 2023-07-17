@@ -2,6 +2,7 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+COPY .env ./
 RUN "npm" "install" "--production=false" "--frozen-lockfile"
 
 COPY . .
@@ -11,6 +12,7 @@ FROM node:16-alpine AS production-dependencies
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+COPY .env ./
 RUN "npm" "install" "--production=true" "--frozen-lockfile"
 
 FROM node:16-alpine

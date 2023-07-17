@@ -95,7 +95,7 @@ export const authOptions = {
   session: {
     jwt: true,
   },
-  secret: process.env.JWT_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   debug: true,
 };
 

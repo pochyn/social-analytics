@@ -5,6 +5,7 @@ import widgets from "@/components/widgets";
 import { Typography } from "antd";
 import { Input, Space } from "antd";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import UsernameSearch from "./search/username-search";
 
 const { Text } = Typography;
 const { Search } = Input;
@@ -34,31 +35,7 @@ const WidgetsList = ({ children }) => {
         id="features"
         className="grid grid-cols-1 sm:grid-cols-3 gap-12 mt-4 sm:mt-10 px-4 sm:px-[8%] mx-auto w-full pt-4"
       >
-        <div className="mb-4 sm:mb-0">
-          <span className="text-secondary font-bold text-2xl">01</span>
-          <div className="mb-2 text-sm sm:text-md font-semibold text-primary">
-            Enter Tik-Tok @username you want to analyze.
-          </div>
-          <div>
-            <div className="flex flex-col items-center justify-start space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4">
-              <input
-                type="text"
-                id="hs-leading-icon"
-                name="hs-leading-icon"
-                className="pl-2 pt-2 pb-2 block border shadow-sm text-sm focus:z-10 focus:border-secondary focus:ring-secondary dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-                placeholder="@username"
-              ></input>
-              <button
-                rel="noopener noreferrer"
-                href="#demo"
-                className="px-6 sm:px-8 py-2 text-sm sm:text-md text-white font-semibold bg-secondary border dark:border-gray-100"
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
-
+        <UsernameSearch></UsernameSearch>
         <div className="hidden sm:block">
           <span className="text-secondary font-bold text-2xl">02</span>
           <div className="mb-1 text-sm sm:text-md font-semibold text-primary">
@@ -112,7 +89,7 @@ const WidgetsList = ({ children }) => {
                   return (
                     <>
                       <div
-                        className="mr-4 aspect-square border w-28 flex items-center bg-grey3 cursor-pointer"
+                        className="mr-4 aspect-auto border w-40 flex items-center bg-grey3 cursor-pointer"
                         key={item.key}
                         draggable={true}
                         unselectable="on"
@@ -127,9 +104,14 @@ const WidgetsList = ({ children }) => {
                                 {item.icon}
                               </div>
                             </div>
-                            <h3 className="text-xs mt-1 truncate">
-                              {item.label}
-                            </h3>
+                            <div className="text-center mb-6">
+                              <h3 className="text-xs mt-1 truncate items-center">
+                                {item.label}
+                              </h3>
+                            </div>
+                          </div>
+                          <div className="">
+                            <h4 className="ml-3">{item.description}</h4>
                           </div>
                         </div>
                       </div>

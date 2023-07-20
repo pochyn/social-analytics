@@ -58,8 +58,9 @@ const WidgetWrapper = ({
               <span className="sr-only">Close modal</span>
             </button>
           </div>
-          <div className="p-2 space-y-6">
-            {/* {component(height, width, itemsLayout)} */}
+          <div className="">
+               { component(height, width, itemsLayout) } 
+            
           </div>
         </div>
       </div>

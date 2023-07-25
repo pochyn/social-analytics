@@ -8,7 +8,6 @@ const api = axios.create({
 });
 
 export const fetchTiktokProfile = async(profile) => {
-    console.log("JSON.stringify(profile): ", JSON.stringify(profile));
     try {
         const response = await api.post('/profile', { profiles: profile });
         console.log("Response.data: ", response.data);

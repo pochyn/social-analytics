@@ -13,57 +13,64 @@ const ProfileInfo = (props) => {
 
   return(
     <>
-      <div className="grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-4">
+      <div className="grid grid-cols-4 gap-4 sm:grid sm:grid-cols-4 sm:gap-4">
         <div className="bg-blue-200 p-4">
-          <div className="inline-flex flex-row">
-            <h1 className="ml-3">Profile: {props.nickName}</h1>
-          </div>
           <div className="mt-3">
             <img 
               src="https://hips.hearstapps.com/hmg-prod/images/gordon-ramsay-646367718a5f4.jpg?crop=1xw:1xh;center,top&resize=980:*"
               alt="User Profile Image"
-              style={{borderRadius: "50%"}}
+              style={{borderRadius: "50%", maxHeight: "auto", maxWidth: "100%"}}
               ></img>
           </div>
         </div>
         <div className="bg-blue-200 p-4">
           <div>
             <div className="mb-3">
-              <span>Fans: {props.fans}</span>
+              <span><p style={{color: 'grey'}}>Name:</p>  {props.name}</span>
             </div>
             <div className="mb-3">
-              <span>Following: {props.following}</span>
+              <span><p style={{color: 'grey'}}>Nickname:</p>  {props.nickName}</span>
             </div>
             <div className="mb-3">
-              <span>Total Likes: {props.heart}</span>
+              <span><p style={{color: 'grey'}}>Signature: </p> {props.nickName}</span>
             </div>
             <div className="mb-3">
-              <span>Videos: {props.video}</span>
+              <span><p style={{color: 'grey'}}>Biolink: </p>  {props.bioLink}</span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-blue-200 p-4">
+          <div>
+            <div className="mb-3">
+              <span><p style={{color: 'grey'}}>Fans: </p> {props.fans}</span>
             </div>
             <div className="mb-3">
-              <span>Signature: {props.signature}</span>
+              <span><p style={{color: 'grey'}}>Following: </p> {props.following}</span>
+            </div>
+            <div className="mb-3">
+              <span><p style={{color: 'grey'}}>Total Likes: </p> {props.heart}</span>
+            </div>
+            <div className="mb-3">
+              <span><p style={{color: 'grey'}}>Videos: </p> {props.video}</span>
             </div>
           </div>
         </div>
         <div className="bg-blue-200 p-4">
         <div>
             <div className="mb-3">
-              <span>Biolink:  {props.bioLink}</span>
+              <span><p style={{color: 'grey'}}>Commerce User: </p> {props.commerceUser}</span>
             </div>
             <div className="mb-3">
-              <span>Commerce User:  {props.commerceUser}</span>
+              <span><p style={{color: 'grey'}}>Private Account: </p> {props.privateAccount}</span>
             </div>
             <div className="mb-3">
-              <span>Private Account: {props.privateAccount}</span>
+              <span><p style={{color: 'grey'}}>Region: </p> {props.region}</span>
             </div>
             <div className="mb-3">
-              <span>Region: {props.region}</span>
+              <span><p style={{color: 'grey'}}>Verified: </p> {props.verified}</span>
             </div>
             <div className="mb-3">
-              <span>Verified: {props.verified}</span>
-            </div>
-            <div className="mb-3">
-              <span>Tiktok Seller: {props.ttSeller}</span>
+              <span><p style={{color: 'grey'}}>Tiktok Seller: </p> {props.ttSeller}</span>
             </div>
           </div>
         </div>

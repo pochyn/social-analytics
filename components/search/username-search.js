@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Alert, Space } from 'antd';
+import { Alert } from 'antd';
 import React from 'react';
 import { fetchTiktokProfile } from "@/services/viralhub-api";
+import { TiktokUserProfileDataStoreProvider } from "@/data_store/tiktokUserProfileDataStoreContext";
 
 const UsernameSearch = () => {
     const [usernameInput, setUsernameInput] = useState("");
     const [validationError, setValidationError] = useState("");
+    const [isFetching, setIsFetching] = useState(false);
     const [serverErrorMessage, setServerErrorMessage] = useState("");
+    const [usernameSearchData, setUsernameSearchData] = useState([]);
 
     const handleInputChange = (e) => {
         setUsernameInput(e.target.value);
@@ -17,14 +20,14 @@ const UsernameSearch = () => {
             setValidationError("Username cannot be empty")
             return;
         }
+        setIsFetching(true);
         let profiles = [];
         profiles.push(usernameInput);
-        const userProfileData = await fetchTiktokProfile(profiles);
-        console.log("From search comp: ", userProfileData);
-
-        // create a data store file
-        // update the user profile state of the file
-        // consumers will be updated once the state is updated
+        fetchTiktokProfile(profiles).then((userProfileData) => {
+            setIsFetching(false);
+            console.log("From search comp: ", userProfileData);
+            setUsernameSearchData(prevData => [...prevData, userProfileData]);
+        });
     }
 
     const onClose = (e) => {
@@ -58,11 +61,13 @@ const UsernameSearch = () => {
                     onChange={(e) => handleInputChange(e)}
                     ></input>
                     <button
-                    rel="noopener noreferrer"
-                    onClick={handleUsernameSearchClick}
-                    className="px-6 sm:px-8 py-2 text-sm sm:text-md text-white font-semibold bg-secondary border dark:border-gray-100"
+                        rel="noopener noreferrer"
+                        onClick={handleUsernameSearchClick}
+                        disabled={isFetching}
+                        loading={true}
+                        className="px-6 sm:px-8 py-2 text-sm sm:text-md text-white font-semibold bg-secondary border dark:border-gray-100 disabled:opacity-75"
                     >
-                    Search
+                        Search
                     </button>
                 </div>
             </div>

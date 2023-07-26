@@ -1,9 +1,11 @@
 "use client";
 
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Item } from "antd";
 import React, { useState } from "react";
 import widgets from "@/components/widgets";
 import Header from "@/components/dashboard-layout/Header";
+import { LogoutOutlined } from "@ant-design/icons";
+import { signOut } from "next-auth/react";
 
 const { Sider, Content } = Layout;
 
@@ -67,10 +69,32 @@ const HeaderLayout = ({ children }) => {
             background: "rgba(155, 155, 155, 0.2)",
           }}
         />
-        <Menu mode="inline" defaultSelectedKeys={["1"]} items={items} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+            height: "calc(100vh - 64px);",
+          }}
+        >
+          <div>
+            <Menu mode="inline" defaultSelectedKeys={["1"]} items={items} />
+          </div>
+          <div>
+            <Menu mode="inline" selectable={false}>
+              <Menu.Item
+                key="logout"
+                icon={<LogoutOutlined />}
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
+                Logout
+              </Menu.Item>
+            </Menu>
+          </div>
+        </div>
       </Sider>
       <Layout>
-        <Header triggerCollapsed={triggerCollapsed} collapsed={collapsed} />
+        {/* <Header triggerCollapsed={triggerCollapsed} collapsed={collapsed} /> */}
         <Content
           style={{
             minHeight: "80vh",

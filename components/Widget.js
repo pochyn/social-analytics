@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Typography } from "antd";
 
-const { Text } = Typography;
-
 const WidgetWrapper = ({
   id,
   onRemoveItem,

@@ -129,10 +129,10 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
   };
 
   return (
-    <div className="mb-3 ml-[8%] mr-[8%] border">
+    <div className="">
       <ResponsiveGridLayout
         draggableHandle=".drag-handle"
-        className="shadow rounded-lg cursor-pointer"
+        className="cursor-pointer"
         style={{
           // backgroundColor: "#f9fcff",
           // backgroundImage: "linear-gradient(147deg, #f9fcff 0%, #eaedf0 74%)",

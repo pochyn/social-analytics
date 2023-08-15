@@ -139,15 +139,16 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
   //   shouldFetch ? null : "/api/tiktok/user-profile",
   //   getFetcher
   // );
-  const handleTiktokUserProfileSubmission = () => {
+  const handleTiktokUserProfileSubmission = async () => {
     setShouldFetch(true);
-    // setItems(prevItems => [...prevItems, newItem]);
-    const profiles = [];
-    profiles.push(username);
-    fetchProfiles(profiles).then((response) => {
-      setShouldFetch(false);
-      console.log("Username fetch: ", response);
+    const data = await fetch("/api/tiktok/user-profile", {
+      method: "POST",
+      body: JSON.stringify({ profiles: [username] }),
     });
+    if (data) {
+      setUserData(data);
+    }
+    setShouldFetch(false);
   };
 
   const onUsernameInputChange = (value) => {

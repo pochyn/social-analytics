@@ -9,30 +9,10 @@ const UsernameSearch = ({
   handleUsernameInputChange,
   handleTiktokUserProfileSubmission,
 }) => {
-  console.log(
-    shouldFetch,
-    username,
-    handleUsernameInputChange,
-    handleTiktokUserProfileSubmission
-  );
   const [validationError, setValidationError] = useState("");
 
   const onClose = (e) => {
     setValidationError("");
-  };
-
-  const handleUsernameChange = (event) => {
-    console.log(event.target.value);
-    console.log(
-      shouldFetch,
-      username,
-      handleUsernameInputChange,
-      handleTiktokUserProfileSubmission
-    );
-    //handleUsernameInputChange(event.target.value);
-    // console.log(handleUsernameInputChange);
-    // console.log(shouldFetch);
-    // console.log(username);
   };
 
   return (
@@ -61,11 +41,13 @@ const UsernameSearch = ({
               className="pl-2 pt-2 pb-2 block border shadow-sm text-sm focus:z-10 focus:border-secondary focus:ring-secondary dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
               placeholder="@username"
               value={username}
-              onChange={() => handleUsernameChange()}
+              onChange={(event) =>
+                handleUsernameInputChange(event.target.value)
+              }
             ></input>
             <button
               rel="noopener noreferrer"
-              onClick={() => handleTiktokUserProfileSubmission()}
+              onClick={handleTiktokUserProfileSubmission}
               disabled={shouldFetch}
               className="px-6 sm:px-8 py-2 text-sm sm:text-md text-white font-semibold bg-secondary border dark:border-gray-100 disabled:opacity-75"
             >

@@ -35,7 +35,6 @@ const WidgetsList = ({ children }) => {
         id="features"
         className="grid grid-cols-1 sm:grid-cols-3 gap-12 mt-4 sm:mt-10 px-4 sm:px-[8%] mx-auto w-full pt-4"
       >
-        <UsernameSearch />
         <div className="hidden sm:block">
           <span className="text-secondary font-bold text-2xl">02</span>
           <div className="mb-1 text-sm sm:text-md font-semibold text-primary">

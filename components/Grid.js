@@ -5,6 +5,7 @@ import { withSize } from "react-sizeme";
 import allWidgets from "@/components/widgets";
 import Widget from "@/components/Widget";
 import UsernameSearch from "./search/username-search";
+import { fetchProfiles } from "@/app/api/tiktok/user-profile/route";
 
 const getFetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -131,21 +132,37 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
     }
   };
 
-  const [shouldFetch, setShouldFetch] = useState(true);
-  const [username, setUsername] = useState(true);
-  const { data, error } = useSWR(
-    shouldFetch ? null : "/api/tiktok/user-profile",
-    getFetcher
-  );
+  const [shouldFetch, setShouldFetch] = useState(false);
+  const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState([]);
+  // const { data, error } = useSWR(
+  //   shouldFetch ? null : "/api/tiktok/user-profile",
+  //   getFetcher
+  // );
+  const handleTiktokUserProfileSubmission = () => {
+    setShouldFetch(true);
+    // setItems(prevItems => [...prevItems, newItem]);
+    const profiles = [];
+    profiles.push(username);
+    fetchProfiles(profiles).then((response) => {
+      setShouldFetch(false);
+      console.log("Username fetch: ", response);
+    });
+  };
+
+  const onUsernameInputChange = (value) => {
+    setUsername(value);
+  };
 
   return (
     <>
       <div className="">
         <UsernameSearch
-          setUsername={setUsername}
-          setShouldFetch={setShouldFetch}
+          shouldFetch={shouldFetch}
+          username={username}
+          handleUsernameInputChange={onUsernameInputChange}
+          handleTiktokUserProfileSubmission={handleTiktokUserProfileSubmission}
         />
-
         <ResponsiveGridLayout
           draggableHandle=".drag-handle"
           className="cursor-pointer"
@@ -182,7 +199,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
                 icon={currentWidgets[key.split("-")[0]].icon}
                 localSymbol={key.split("-")[1]}
                 itemsLayout={items}
-                data={data}
+                data=""
               />
             </div>
           ))}

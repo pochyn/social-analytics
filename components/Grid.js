@@ -7,8 +7,6 @@ import Widget from "@/components/Widget";
 import UsernameSearch from "./search/username-search";
 import { fetchProfiles } from "@/app/api/tiktok/user-profile/route";
 
-const getFetcher = (url) => fetch(url).then((r) => r.json());
-
 // for now save to local storage,
 // in the future better save items and layouts in db per user
 const getFromLS = (key) => {
@@ -135,18 +133,17 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
   const [shouldFetch, setShouldFetch] = useState(false);
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState([]);
-  // const { data, error } = useSWR(
-  //   shouldFetch ? null : "/api/tiktok/user-profile",
-  //   getFetcher
-  // );
+
   const handleTiktokUserProfileSubmission = async () => {
     setShouldFetch(true);
     const data = await fetch("/api/tiktok/user-profile", {
       method: "POST",
-      body: JSON.stringify({ profiles: [username] }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ profilesArr: [username] }),
     });
-    if (data) {
-      setUserData(data);
+    const response = await data.json();
+    if (response) {
+      setUserData(response);
     }
     setShouldFetch(false);
   };

@@ -3,9 +3,9 @@ require("dotenv").config();
 
 export async function POST(req) {
   const body = await req.json();
-  const { profiles } = body;
+  const { profilesArr } = body;
 
-  if (!profiles.length) {
+  if (!profilesArr.length) {
     return NextResponse.json(
       {
         error: true,
@@ -18,17 +18,13 @@ export async function POST(req) {
   try {
     const data = await fetch(`${process.env.BACKEND_URL}/v1/tiktok/profile`, {
       method: "POST",
-      body: JSON.stringify({ profiles }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ profiles: profilesArr }),
     });
 
-    // need tp parse data
-
-    return NextResponse.json(
-      {
-        data,
-      },
-      { status: 200 }
-    );
+    // need to parse data
+    const response = await data.json();
+    return NextResponse.json({ response }, { status: 200 });
   } catch (error) {
     console.error("Error fetching profiles:", error);
     return NextResponse.json(

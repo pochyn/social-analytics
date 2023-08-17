@@ -142,7 +142,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
     });
     const response = await data.json();
     if (response) {
-      setUserData(response);
+      setUserData(response?.response);
     }
     setShouldFetch(false);
   };
@@ -196,7 +196,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
                 icon={currentWidgets[key.split("-")[0]].icon}
                 localSymbol={key.split("-")[1]}
                 itemsLayout={items}
-                data=""
+                data={userData}
               />
             </div>
           ))}

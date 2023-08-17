@@ -22,7 +22,6 @@ export async function POST(req) {
       body: JSON.stringify({ profiles: profilesArr }),
     });
 
-    // need to parse data
     const response = await data.json();
     return NextResponse.json({ response }, { status: 200 });
   } catch (error) {

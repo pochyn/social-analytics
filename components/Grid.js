@@ -5,7 +5,6 @@ import { withSize } from "react-sizeme";
 import allWidgets from "@/components/widgets";
 import Widget from "@/components/Widget";
 import UsernameSearch from "./search/username-search";
-import { fetchProfiles } from "@/app/api/tiktok/user-profile/route";
 
 // for now save to local storage,
 // in the future better save items and layouts in db per user

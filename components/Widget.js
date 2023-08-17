@@ -9,6 +9,7 @@ const WidgetWrapper = ({
   icon,
   isRerendered,
   itemsLayout,
+  data,
 }) => {
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
@@ -56,9 +57,7 @@ const WidgetWrapper = ({
               <span className="sr-only">Close modal</span>
             </button>
           </div>
-          <div className="p-2 space-y-6">
-            {/* {component(height, width, itemsLayout)} */}
-          </div>
+          <div className="">{component(height, width, itemsLayout, data)}</div>
         </div>
       </div>
     </div>

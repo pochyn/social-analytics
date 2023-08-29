@@ -26,38 +26,24 @@ export async function POST(req) {
   });
 
   try {
-    const data = await fetch(`${process.env.BACKEND_URL}/v1/tiktok/profile`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profiles: profilesArr }),
-    });
-
-    const response = await data.json();
-
-    const item = {
-      TableName: "tiktok-username",
-      Item: {
-        username: "stas",
-        fetched_at: new Date().toISOString(),
-        videos: response,
+    const params = {
+      Key: {
+        username: {
+          S: profilesArr?.[0],
+        },
+        fetched_at: {
+          S: "2023-08-29T23:21:24.586Z",
+        },
       },
+      TableName: "tiktok-username",
     };
 
-    dynamoDB.put(item, (err, data) => {
-      if (err) {
-        console.error(
-          "Error inserting item into DynamoDB",
-          JSON.stringify(err, null, 2)
-        );
-      } else {
-        console.log(
-          "Item inserted successfully",
-          JSON.stringify(data, null, 2)
-        );
-      }
-    });
+    console.log("**** params", params);
 
-    return NextResponse.json({ response }, { status: 200 });
+    const data = await dynamoDB.get(params).promise();
+    console.log("**** data", data.Item);
+
+    return NextResponse.json({ response: "" }, { status: 200 });
   } catch (error) {
     console.error("Error fetching profiles:", error);
     return NextResponse.json(

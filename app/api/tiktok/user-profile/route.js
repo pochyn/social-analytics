@@ -37,25 +37,13 @@ export async function POST(req) {
     const item = {
       TableName: "tiktok-username",
       Item: {
-        username: "stas",
+        username: profilesArr?.[0],
         fetched_at: new Date().toISOString(),
         videos: response,
       },
     };
 
-    dynamoDB.put(item, (err, data) => {
-      if (err) {
-        console.error(
-          "Error inserting item into DynamoDB",
-          JSON.stringify(err, null, 2)
-        );
-      } else {
-        console.log(
-          "Item inserted successfully",
-          JSON.stringify(data, null, 2)
-        );
-      }
-    });
+    await dynamoDB.put(item).promise();
 
     return NextResponse.json({ response }, { status: 200 });
   } catch (error) {

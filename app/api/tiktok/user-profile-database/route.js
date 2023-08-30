@@ -11,7 +11,7 @@ export async function POST(req) {
     return NextResponse.json(
       {
         error: true,
-        message: "profiles array is required",
+        message: "username is required",
       },
       { status: err.code || 500 }
     );
@@ -41,10 +41,10 @@ export async function POST(req) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error fetching profiles:", error);
+    console.error("Error fetching profile from database:", error);
     return NextResponse.json(
       {
-        error: error.message,
+        response: null,
       },
       { status: error.status || 500 }
     );

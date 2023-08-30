@@ -11,7 +11,7 @@ export async function POST(req) {
     return NextResponse.json(
       {
         error: true,
-        message: "profiles array is required",
+        message: "username is required",
       },
       { status: err.code || 500 }
     );

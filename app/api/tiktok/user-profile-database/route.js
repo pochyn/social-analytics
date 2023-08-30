@@ -27,23 +27,19 @@ export async function POST(req) {
 
   try {
     const params = {
-      Key: {
-        username: {
-          S: profilesArr?.[0],
-        },
-        fetched_at: {
-          S: "2023-08-29T23:21:24.586Z",
-        },
+      KeyConditionExpression: "username = :usernameVal",
+      ExpressionAttributeValues: {
+        ":usernameVal": profilesArr?.[0],
       },
       TableName: "tiktok-username",
     };
 
-    console.log("**** params", params);
+    const data = await dynamoDB.query(params).promise();
 
-    const data = await dynamoDB.get(params).promise();
-    console.log("**** data", data.Item);
-
-    return NextResponse.json({ response: "" }, { status: 200 });
+    return NextResponse.json(
+      { response: data?.Items?.[0]?.videos || null },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error fetching profiles:", error);
     return NextResponse.json(

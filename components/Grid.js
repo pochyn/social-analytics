@@ -135,12 +135,23 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
 
   const handleTiktokUserProfileSubmission = async () => {
     setShouldFetch(true);
-    const data = await fetch("/api/tiktok/user-profile", {
+    let data = await fetch("/api/tiktok/user-profile-database", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profilesArr: [username] }),
+      body: JSON.stringify({ username }),
     });
-    const response = await data.json();
+
+    let response = await data.json();
+
+    if (!response.response) {
+      data = await fetch("/api/tiktok/user-profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username }),
+      });
+      response = await data.json();
+    }
+
     if (response) {
       setUserData(response?.response);
     }

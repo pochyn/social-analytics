@@ -26,31 +26,25 @@ export async function POST(req) {
   });
 
   try {
-    const data = await fetch(`${process.env.BACKEND_URL}/v1/tiktok/profile`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profiles: [username] }),
-    });
-
-    const response = await data.json();
-
-    const item = {
-      TableName: "tiktok-username",
-      Item: {
-        username,
-        fetched_at: new Date().toISOString(),
-        videos: response,
+    const params = {
+      KeyConditionExpression: "username = :usernameVal",
+      ExpressionAttributeValues: {
+        ":usernameVal": username,
       },
+      TableName: "tiktok-username",
     };
 
-    await dynamoDB.put(item).promise();
+    const data = await dynamoDB.query(params).promise();
 
-    return NextResponse.json({ response }, { status: 200 });
+    return NextResponse.json(
+      { response: data?.Items?.[0]?.videos || null },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error fetching profiles:", error);
+    console.error("Error fetching profile from database:", error);
     return NextResponse.json(
       {
-        error: error.message,
+        response: null,
       },
       { status: error.status || 500 }
     );

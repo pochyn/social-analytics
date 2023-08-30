@@ -5,9 +5,9 @@ require("dotenv").config();
 
 export async function POST(req) {
   const body = await req.json();
-  const { profilesArr } = body;
+  const { username } = body;
 
-  if (!profilesArr.length) {
+  if (!username) {
     return NextResponse.json(
       {
         error: true,
@@ -29,7 +29,7 @@ export async function POST(req) {
     const params = {
       KeyConditionExpression: "username = :usernameVal",
       ExpressionAttributeValues: {
-        ":usernameVal": profilesArr?.[0],
+        ":usernameVal": username,
       },
       TableName: "tiktok-username",
     };

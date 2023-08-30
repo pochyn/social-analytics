@@ -5,9 +5,9 @@ require("dotenv").config();
 
 export async function POST(req) {
   const body = await req.json();
-  const { profilesArr } = body;
+  const { username } = body;
 
-  if (!profilesArr.length) {
+  if (!username) {
     return NextResponse.json(
       {
         error: true,
@@ -29,7 +29,7 @@ export async function POST(req) {
     const data = await fetch(`${process.env.BACKEND_URL}/v1/tiktok/profile`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profiles: profilesArr }),
+      body: JSON.stringify({ profiles: [username] }),
     });
 
     const response = await data.json();
@@ -37,7 +37,7 @@ export async function POST(req) {
     const item = {
       TableName: "tiktok-username",
       Item: {
-        username: profilesArr?.[0],
+        username,
         fetched_at: new Date().toISOString(),
         videos: response,
       },

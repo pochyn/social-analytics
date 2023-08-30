@@ -138,7 +138,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
     let data = await fetch("/api/tiktok/user-profile-database", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profilesArr: [username] }),
+      body: JSON.stringify({ username }),
     });
 
     let response = await data.json();
@@ -147,7 +147,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
       data = await fetch("/api/tiktok/user-profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profilesArr: [username] }),
+        body: JSON.stringify({ username }),
       });
       response = await data.json();
     }

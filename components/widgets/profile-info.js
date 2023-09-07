@@ -55,7 +55,8 @@ const ProfileInfo = ({ data }) => {
             </div>
             <div className="mb-3">
               <span>
-                <p style={{ color: "grey" }}>Biolink: </p> {authorMeta?.bioLink}
+                <p style={{ color: "grey" }}>Biolink: </p>{" "}
+                {authorMeta?.bioLink ? authorMeta.bioLink : "➖"}
               </span>
             </div>
           </div>
@@ -91,7 +92,7 @@ const ProfileInfo = ({ data }) => {
             <div className="mb-3">
               <span>
                 <p style={{ color: "grey" }}>Commerce User: </p>{" "}
-                {authorMeta?.commerceUser ? "True" : "-"}
+                {authorMeta?.commerceUser ? "✅" : "❌"}
               </span>
             </div>
             <div className="mb-3">
@@ -108,13 +109,13 @@ const ProfileInfo = ({ data }) => {
             <div className="mb-3">
               <span>
                 <p style={{ color: "grey" }}>Verified: </p>{" "}
-                {authorMeta?.verified ? "Verified" : "-"}
+                {authorMeta?.verified ? "Verified" : "❌"}
               </span>
             </div>
             <div className="mb-3">
               <span>
                 <p style={{ color: "grey" }}>Tiktok Seller: </p>{" "}
-                {authorMeta?.ttSeller ? "True" : "-"}
+                {authorMeta?.ttSeller ? "✅" : "❌"}
               </span>
             </div>
           </div>

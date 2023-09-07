@@ -1,7 +1,16 @@
 import { NextResponse } from "next/server";
 import { DynamoDB } from "aws-sdk";
+const {
+  UserProfileMockData,
+} = require("../../../../mock_data/userProfileMockData");
 
 require("dotenv").config();
+
+function getPastDateISO(daysBefore) {
+  const today = new Date();
+  today.setDate(today.getDate() - daysBefore);
+  return today.toISOString();
+}
 
 export async function POST(req) {
   const body = await req.json();
@@ -24,7 +33,10 @@ export async function POST(req) {
     },
     region: "us-east-1",
   });
-
+  console.log(
+    "--- UserProfileMockData ---: ",
+    UserProfileMockData.test_user123
+  );
   try {
     const data = await fetch(`${process.env.BACKEND_URL}/v1/tiktok/profile`, {
       method: "POST",
@@ -33,7 +45,7 @@ export async function POST(req) {
     });
 
     const response = await data.json();
-
+    // username = "test_user123";
     const item = {
       TableName: "tiktok-username",
       Item: {

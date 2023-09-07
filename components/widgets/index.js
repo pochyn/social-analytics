@@ -3,6 +3,7 @@ import profileInfo from "./profile-info";
 import demoChart2 from "./demo-chart2";
 import demoChart3 from "./demo-chart3";
 import demoChart4 from "./demo-chart4";
+import followersGrowth from "./followers-growth";
 
 import proChart1 from "./pro-chart1";
 
@@ -22,6 +23,7 @@ const allWidgets = {
       proChart1,
       premiumChart1,
       premiumChart2,
+      followersGrowth,
     ],
   },
 };

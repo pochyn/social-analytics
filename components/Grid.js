@@ -5,6 +5,7 @@ import { withSize } from "react-sizeme";
 import allWidgets from "@/components/widgets";
 import Widget from "@/components/Widget";
 import UsernameSearch from "./search/username-search";
+import DateFilter from "@/data/enum/dateFilter";
 
 // for now save to local storage,
 // in the future better save items and layouts in db per user
@@ -138,7 +139,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
     let data = await fetch("/api/tiktok/user-profile-database", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username }),
+      body: JSON.stringify({ username, endDate: DateFilter.PastSevenDays }),
     });
 
     let response = await data.json();
@@ -153,6 +154,10 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
     }
 
     if (response) {
+      console.log(
+        "RESPONSE FROM CALL TO USER PROFILE DB: ",
+        response?.response[0].videos[0]
+      );
       setUserData(response?.response);
     }
     setShouldFetch(false);

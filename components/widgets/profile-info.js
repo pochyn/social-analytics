@@ -10,9 +10,9 @@ const ProfileInfo = ({ data }) => {
   //   const response = fetchTiktokProfile(['gordonramsayofficial'])
   //   console.log(response);
   // }, []);
-  console.log("**** data", data);
+  console.log("**** data", data[0]?.videos[0]?.authorMeta);
 
-  const authorMeta = data[0]?.authorMeta ?? {};
+  const authorMeta = data[0]?.videos[0]?.authorMeta ?? {};
 
   return (
     <>

@@ -54,6 +54,10 @@ export async function GET(req) {
     // Note: without the .promise() NextResponse.json({res}) won't work
     const data = await dynamoDB.query(params).promise();
 
+    data.Items.forEach(function (item) {
+      console.log(item);
+    });
+
     const res = await data.Items;
     console.log("RESULT ________ ", res);
 

@@ -1,39 +1,37 @@
 import DateFilter from "@/data/enum/dateFilter";
-import { LineChartOutlined, ArrowUpOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
+import {
+  LineChartOutlined,
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+} from "@ant-design/icons";
+import { useEffect, useState } from "react";
+import { followersGrowthProfileAnalysis } from "@/utils/followersGrowth/followersGrowthAnalysis";
 
 const FollowersGrowth = ({ data }) => {
-  let followerGrowthObject;
+  const [generalGrowthAnalyticsData, setGeneralGrowthAnalyticsData] = useState({
+    followersGrowth: null,
+    likesGrowth: null,
+  });
+  const [dateData, setDateData] = useState([]);
 
   const authorMeta = data[0]?.authorMeta ?? {};
-  console.log("authorMeta: ", authorMeta);
-  console.log(authorMeta.name);
   useEffect(() => {
-    console.log("Followers growth useEffect ");
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `/api/tiktok/followers-growth?username=${authorMeta?.name}&endDate=${DateFilter.PastFourteenDays}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+    const analytics = () => {
+      let { generalGrowthAnalyticsData, dateData } =
+        followersGrowthProfileAnalysis(data, DateFilter.PastSevenDays);
 
-        const responseData = await response.json();
-        if (responseData) {
-          console.log("follower growth response: ", responseData);
-        }
-      } catch (error) {
-        console.error("Error fetching followers growth:", error);
-      }
+      setGeneralGrowthAnalyticsData((prevState) => ({
+        ...prevState,
+        followersGrowth: generalGrowthAnalyticsData?.followersGrowth,
+        likesGrowth: generalGrowthAnalyticsData?.likesGrowth,
+      }));
+      setDateData((prevDateData) => [...prevDateData, dateData]);
     };
 
-    if (data && authorMeta?.name) {
-      fetchData();
+    if (data) {
+      analytics();
     }
   }, [data]);
-
   return (
     <>
       <div className="flex justify-center items-center mx-6 my-6  w-full">
@@ -46,16 +44,22 @@ const FollowersGrowth = ({ data }) => {
               Followers Growth
             </h1>
             <div className="mt-6 mb-2 mx-6 flex flex-row items-center">
-              <ArrowUpOutlined
-                className="mr-3"
-                style={{ fontSize: "20px", color: "black" }}
-              />
-              <h2 className="text-2xl font-bold">27.1K</h2>
-            </div>
-            <div className="flex flex-row items-center ml-7">
-              <h3 className="text-lg" style={{ color: "rgb(5 150 105)" }}>
-                Good
-              </h3>
+              {generalGrowthAnalyticsData.followersGrowth &&
+              generalGrowthAnalyticsData.followersGrowth > 0 ? (
+                <ArrowUpOutlined
+                  className="mr-3"
+                  style={{ fontSize: "20px", color: "#097969" }}
+                />
+              ) : generalGrowthAnalyticsData.followersGrowth &&
+                generalGrowthAnalyticsData.followersGrowth <= 0 ? (
+                <ArrowDownOutlined
+                  className="mr-3"
+                  style={{ fontSize: "20px", color: "red" }}
+                />
+              ) : null}
+              <h2 className="text-2xl font-bold">
+                {generalGrowthAnalyticsData.followersGrowth}
+              </h2>
             </div>
           </div>
           <br />
@@ -64,21 +68,27 @@ const FollowersGrowth = ({ data }) => {
               Likes Growth
             </h1>
             <div className="mt-6 mb-2 mx-6 flex flex-row items-center">
-              <ArrowUpOutlined
-                className="mr-3"
-                style={{ fontSize: "20px", color: "black" }}
-              />
-              <h2 className="text-2xl font-bold">320.1K</h2>
-            </div>
-            <div className="flex flex-row items-center ml-7">
-              <h3 className="text-lg" style={{ color: "rgb(91 33 182)" }}>
-                Excellent
-              </h3>
+              {generalGrowthAnalyticsData.likesGrowth &&
+              generalGrowthAnalyticsData.likesGrowth > 0 ? (
+                <ArrowUpOutlined
+                  className="mr-3"
+                  style={{ fontSize: "20px", color: "#097969" }}
+                />
+              ) : generalGrowthAnalyticsData.likesGrowth &&
+                generalGrowthAnalyticsData.likesGrowth <= 0 ? (
+                <ArrowDownOutlined
+                  className="mr-3"
+                  style={{ fontSize: "20px", color: "red" }}
+                />
+              ) : null}
+              <h2 className="text-2xl font-bold">
+                {generalGrowthAnalyticsData.likesGrowth}
+              </h2>
             </div>
           </div>
         </div>
         <div className="mx-6 w-1/2 bg-secondary">
-          <h1 className="text-xl">Hola Bro</h1>
+          
         </div>
       </div>
     </>

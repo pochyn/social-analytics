@@ -42,7 +42,7 @@ export async function POST(req) {
       },
       ExpressionAttributeValues: {
         ":usernameVal": (username = "test_user123"),
-        ":startDate": getPastDateISO(parseInt((endDate = 14))), // replace with your desired start date
+        ":startDate": getPastDateISO(parseInt((endDate = 30))), // replace with your desired start date
         ":endDate": new Date().toISOString(), // replace with your desired end date
       },
     };

@@ -182,7 +182,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
           style={{
             // backgroundColor: "#f9fcff",
             // backgroundImage: "linear-gradient(147deg, #f9fcff 0%, #eaedf0 74%)",
-            minHeight: "80vh",
+            minHeight: "100vh",
           }}
           layouts={layouts}
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}

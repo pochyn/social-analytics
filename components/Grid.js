@@ -5,6 +5,7 @@ import { withSize } from "react-sizeme";
 import allWidgets from "@/components/widgets";
 import Widget from "@/components/Widget";
 import UsernameSearch from "./search/username-search";
+import VideoAnalyzer from "./widgets/video_analyzer";
 
 // for now save to local storage,
 // in the future better save items and layouts in db per user
@@ -171,6 +172,7 @@ const DashboardResponsive = ({ size: { width }, symbol, logs, ohlc }) => {
           handleUsernameInputChange={onUsernameInputChange}
           handleTiktokUserProfileSubmission={handleTiktokUserProfileSubmission}
         />
+        <VideoAnalyzer />
         <ResponsiveGridLayout
           draggableHandle=".drag-handle"
           className="cursor-pointer"
